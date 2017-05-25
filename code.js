@@ -27,7 +27,7 @@ class ImprovedFighter extends Fighter{
     this.health = health;
   }
 
-  hit(enemy, point){
+  doubleHit(enemy, point){
     super.hit(enemy, 2*point);
   }
 }
@@ -37,9 +37,16 @@ function fight(fighter, improvedFighter, ...point){
   let count = 0;
   while ((fighter.health>0) && (improvedFighter.health>0)){
     console.log(`Fight ${count+1}`);
-    console.log(`Attacking player: name - ${arr[count%2].name}, power - ${arr[count%2].power}, health - ${arr[count%2].health} `);
-    console.log(`Second player: name - ${arr[(count+1)%2].name}, power - ${arr[(count+1)%2].power}, health - ${arr[(count+1)%2].health} `);
-    arr[count%2].hit(arr[(count+1)%2], point[0]);
+    if (count%2 == 0){
+      console.log(`Name: ${fighter.name}, power: ${fighter.power}, health: ${fighter.health} - Attacking player `);
+      console.log(`Name: ${improvedFighter.name}, power: ${improvedFighter.power}, health: ${improvedFighter.health}`);
+      fighter.hit(improvedFighter, point[0]);
+    }
+    else {
+      console.log(`Name: ${fighter.name}, power: ${fighter.power}, health: ${fighter.health}`);
+      console.log(`Name: ${improvedFighter.name}, power: ${improvedFighter.power}, health: ${improvedFighter.health} - Attacking player `);
+      improvedFighter.hit(fighter, point[0]);
+    }
     count++;
   }
   console.log(`The winner is ${arr[(count-1)%2].name}!`);
@@ -50,3 +57,8 @@ let fighter1 = new Fighter("Vasya", 2, 20);
 let fighter2 = new ImprovedFighter("Petya", 3, 20);
 
 fight(fighter1, fighter2, 2, 3, 4);
+
+
+//arrow function, нехай хоч тут буде.
+let sum = (a,b) => a + b;
+console.log( sum(1, 2) );
