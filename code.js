@@ -32,7 +32,7 @@ class ImprovedFighter extends Fighter{
   }
 }
 
-function fight(fighter, improvedFighter, ...point){
+var fight = (fighter, improvedFighter, ...point)=>{
   let arr = [fighter, improvedFighter];
   let count = 0;
   while ((fighter.health>0) && (improvedFighter.health>0)){
@@ -57,8 +57,3 @@ let fighter1 = new Fighter("Vasya", 2, 20);
 let fighter2 = new ImprovedFighter("Petya", 3, 20);
 
 fight(fighter1, fighter2, 2, 3, 4);
-
-
-//arrow function, нехай хоч тут буде.
-let sum = (a,b) => a + b;
-console.log( sum(1, 2) );
